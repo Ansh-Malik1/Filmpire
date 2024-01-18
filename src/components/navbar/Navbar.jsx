@@ -4,19 +4,20 @@ import { Menu , AccountCircle , Brightness4 , Brightness7 } from '@mui/icons-mat
 import { Link } from 'react-router-dom'
 import useStyles from './styles'
 import { useTheme } from '@mui/material/styles'
+import Sidebar from '../sidebar/Sidebar'
 const Navbar = () => {
   const classes = useStyles()
   const isMobile = useMediaQuery('(max-width:600px')
   const theme = useTheme()
   const isLoggedIn = true
-  // const [isMobile , setMobile] = useState()
+  const [toggled , setToggled] = useState(false)
   return (
     <>
     <AppBar position='fixed'>
       <Toolbar className={classes.toolbar}>
         {
           isMobile&&(
-            <IconButton color='inherit' edge='start' style={{outline:'none'}} onClick={()=>{}} className={classes.menuButton}>
+            <IconButton color='inherit' edge='start' style={{outline:'none'}} onClick={()=>setToggled((prevState)=> !prevState)} className={classes.menuButton}>
               <Menu />
             </IconButton>
           )
@@ -37,6 +38,21 @@ const Navbar = () => {
         {isMobile && 'Search...'}
       </Toolbar>
     </AppBar>
+    <div>
+      <nav className={classes.drawer}> 
+      {
+        isMobile ? (
+        <Drawer onClose={()=>setToggled((prevState)=> !prevState)} variant="temporary" anchor='right' open={toggled}  classes={{paper:classes.drawerPaper}} ModalProps={{keepMounted:true}}>
+          <Sidebar setToggled={setToggled}></Sidebar>
+        </Drawer>) : 
+        (
+          <Drawer classes={{paper:classes.drawerPaper}} variant='permanent' open>
+            <Sidebar setToggled={setToggled}></Sidebar>
+          </Drawer>
+        )
+      }
+      </nav>
+    </div>
     </>
   )
 }
