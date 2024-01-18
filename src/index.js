@@ -2,8 +2,14 @@ import React from "react";
 import  ReactDOM from "react-dom";
 import App from "./components/App";
 import { BrowserRouter } from "react-router-dom";
-const root = ReactDOM.createRoot(document.getElementById("root"));
+import { createTheme , ThemeProvider  } from "@mui/material";
+import { createRoot } from 'react-dom/client';
+const theme = createTheme({})
+const root =createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>)
+  <ThemeProvider theme = {theme}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ThemeProvider>
+)
