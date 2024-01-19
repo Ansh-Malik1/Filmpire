@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import useStyles from './styles'
 import { useTheme } from '@mui/material/styles'
 import Sidebar from '../sidebar/Sidebar'
+import SearchBar from '../search/Search'
 const Navbar = () => {
   const classes = useStyles()
   const isMobile = useMediaQuery('(max-width:600px')
@@ -27,7 +28,7 @@ const Navbar = () => {
           theme.palette.mode === 'dark'? (<Brightness7/>) : (<Brightness4/>)
         }
         </IconButton>
-        { !isMobile && 'Search...'}
+        { !isMobile && <SearchBar/>}
         <div>
           {
             !isLoggedIn ? (<Button color='inherit'>Login &nbsp;</Button>):(<Button className={classes.profile} onClick={()=>{}} component={Link} to={`/profile/:id`} color='inherit'>{!isMobile && <>My Movies &nbsp;</>}
@@ -35,7 +36,7 @@ const Navbar = () => {
             </Button>)
           }
         </div>
-        {isMobile && 'Search...'}
+        {isMobile && <SearchBar/>}
       </Toolbar>
     </AppBar>
     <div>

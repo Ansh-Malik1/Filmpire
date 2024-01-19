@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useTheme } from '@mui/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -36,7 +36,7 @@ function Sidebar({setToggled}) {
       <List>
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
+          <Link key={value} className={classes.links} to='/'>
             <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
                 <img src={genreIcons[label.toLowerCase()]} className={classes.genreImg} height={30} />
@@ -55,7 +55,7 @@ function Sidebar({setToggled}) {
           </Box>
         )
           : data?.genres?.map(({ name, id }) => (
-            <Link key={id} className={classes.links} to="/">
+            <Link key={id} className={classes.links} to='/'>
               <ListItem onClick={() =>dispatch(selectGenreOrCategory(id))}>
                 <ListItemIcon>
                   <img src={genreIcons[name.toLowerCase()]} className={classes.genreImg} height={30} />

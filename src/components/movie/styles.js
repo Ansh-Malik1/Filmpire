@@ -11,7 +11,10 @@ export default makeStyles((theme)=>({
         marginTop:'10px',
         textAlign:'center',
         whiteSpace:'nowrap',
-        margin:'auto !important'
+        margin:'auto !important',
+        [theme.breakpoints.down('sm')]:{
+            width:'250px'
+        }
     },
     poster:{
         borderRadius:'20px',
@@ -20,6 +23,9 @@ export default makeStyles((theme)=>({
         transition:'ease-in 100ms',
         '&:hover':{
             transform:'scale(1.025)'
+        },
+        [theme.breakpoints.down('sm')]:{
+            height:'300px'
         }
     },
     links:{

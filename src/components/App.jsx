@@ -15,10 +15,10 @@ const App = () => {
             <main className={classes.content}>
             <div className={classes.toolbar}/>
             <Routes>
-                    <Route exact path='/' element={<Movies/>}>HOME</Route>
                     <Route exact path='/movie/:id' element={<MovieInformation/>}></Route>
                     <Route exact path='/actors/:id' element={<Actors/>}></Route>
                     <Route exact path='/profile/:id' element={<div>Profile</div>}></Route>
+                    <Route path='/' element={<Movies/>}></Route>
                 </Routes> 
             </main>
     </div>

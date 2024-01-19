@@ -3,11 +3,13 @@ import {CircularProgress , Typography , useMediaQuery  , Box} from '@mui/materia
 import {useSelector} from 'react-redux'
 import { useGetMoviesQuery } from '../../services/apiCalls'
 import Movielist from '../movielist/Movielist'
+import { useNavigate } from 'react-router-dom'
 
 const Movies = () => {
+  const navigate = useNavigate()
   const [page,setPage] = useState(1)
-  const {genreOrCategoryName} = useSelector((state)=>state.currentGenreOrCategory)
-  const {data , error , isFetching} = useGetMoviesQuery({genreOrCategoryName,page})
+  const {genreOrCategoryName , searchQuery} = useSelector((state)=>state.currentGenreOrCategory)
+  const {data , error , isFetching} = useGetMoviesQuery({genreOrCategoryName,page , searchQuery})
   if(isFetching){
     return(
       <Box display='flex' justifyContent='center'><CircularProgress size='4rem'/></Box>
@@ -25,6 +27,7 @@ const Movies = () => {
   if(!isFetching){
     return (
       <div>
+        {/* <h1 onClick={()=> navigate(-1)}>BAck</h1> */}
         <Movielist movies={data}/>
       </div>
     )
