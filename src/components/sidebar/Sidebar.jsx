@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
 import { useGetGenresQuery } from '../../services/apiCalls';
 import genreIcons from '../../assets/genres';
+import { selectGenreOrCategory } from '../../features/genreOrCategory';
 
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
@@ -21,7 +22,7 @@ function Sidebar() {
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
-
+  const dispatch = useDispatch()
   return (
     <>
       <Link to="/" className={classes.logoMain}>
@@ -36,7 +37,7 @@ function Sidebar() {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}}>
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
                 <img src={genreIcons[label.toLowerCase()]} className={classes.genreImg} height={30} />
               </ListItemIcon>
@@ -55,7 +56,7 @@ function Sidebar() {
         )
           : data?.genres?.map(({ name, id }) => (
             <Link key={id} className={classes.links} to="/">
-              <ListItem onClick={() =>{}}>
+              <ListItem onClick={() =>dispatch(selectGenreOrCategory(id))}>
                 <ListItemIcon>
                   <img src={genreIcons[name.toLowerCase()]} className={classes.genreImg} height={30} />
                 </ListItemIcon>

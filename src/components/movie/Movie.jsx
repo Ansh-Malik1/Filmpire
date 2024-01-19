@@ -13,7 +13,7 @@ const Movie = ({movie , i}) => {
         <Link className={classes.links} to={`/movie/${movie?.id}`}>
           <img alt={movie.title} className={classes.poster} src={src}/>
           <Typography variant='h5' className={classes.title}>{movie?.title}</Typography>
-          <Tooltip disableTouchListener title={`${movie?.vote_average}`}>
+          <Tooltip disableTouchListener title={`${movie?.vote_average}`} placement='right' arrow>
             <div>
               <Rating readOnly value={movie?.vote_average/2} precision={0.1} />
             </div>
