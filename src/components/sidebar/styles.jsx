@@ -8,14 +8,13 @@ export default makeStyles((theme)=>({
     },
     imageLink:{
         width:'70%',
-        
     },
-    link:{
+    links:{
         color:theme.palette.text.primary,
         textDecoration:'none'
     },
     genreImg:{
-        filter: theme.palette.mode==='dark'? ('dark') : ('inveert(1)')
+        filter: theme.palette.mode==='dark'? ('dark') : ('inveert(1)'),
     }
 
 }))
