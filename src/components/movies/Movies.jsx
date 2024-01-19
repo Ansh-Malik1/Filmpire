@@ -5,7 +5,9 @@ import { useGetMoviesQuery } from '../../services/apiCalls'
 import Movielist from '../movielist/Movielist'
 
 const Movies = () => {
-  const {data , error , isFetching} = useGetMoviesQuery()
+  const [page,setPage] = useState(1)
+  const {genreOrCategoryName} = useSelector((state)=>state.currentGenreOrCategory)
+  const {data , error , isFetching} = useGetMoviesQuery({genreOrCategoryName,page})
   if(isFetching){
     return(
       <Box display='flex' justifyContent='center'><CircularProgress size='4rem'/></Box>
