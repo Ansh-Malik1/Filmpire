@@ -5,7 +5,8 @@ import { Link , useNavigate, useParams } from 'react-router-dom'
 import { UseDispatch , useSelector } from 'react-redux'
 import axios from 'axios'
 import useStyles from './styles'
-import { useGetMovieQuery } from '../../services/apiCalls'
+import Movielist  from '../movielist/Movielist'
+import { useGetMovieQuery , useGetRecommendationsQuery} from '../../services/apiCalls'
 import genreIcons from '../../assets/genres';
 const MovieInformation = () => {
   const navigate = useNavigate()
@@ -14,6 +15,12 @@ const MovieInformation = () => {
   const {data , isFetching , error} = useGetMovieQuery(id)
   const isMovieFavourited = false
   const isMovieWatchlisted = false
+  const {data:recommendations, isFetching:isFetchingRecommendations} = useGetRecommendationsQuery({
+    movie_id: id,
+    list:'/similar'
+    
+  })
+  console.log(recommendations)
   if(isFetching){
     return(
       <Box display='flex' justifyContent='center' alignItems='center'><CircularProgress size='8rem'/></Box>
@@ -92,13 +99,23 @@ const MovieInformation = () => {
                   endIcon={isMovieWatchlisted ? (<Remove/>) : (<PlusOne/> )}
                   >{isMovieWatchlisted ? 'Remove' : 'Watchlist'}</Button>
                   <Button endIcon={<ArrowBack/>} sx={{borderColor:'primary.main'}}>
-                    <Typography color='inherit' style={{textDecoration:'none'}} variant='subtitle2' component={Link} to={navigate(-1)}>Back</Typography>
+                    <Typography color='inherit' style={{textDecoration:'none'}} variant='subtitle2' component={Link} to={'/'}>Home</Typography>
                   </Button>
                 </ButtonGroup>
               </Grid>
             </div>
           </Grid>
         </Grid>  
+        <Box marginTop='5rem' width='100%'> 
+            <Typography variant='h3' align='center' gutterBottom>Similar Movies</Typography>
+            <Typography align='center' variant='subtitle1' gutterBottom>Get similar movies based on genres and plot</Typography>
+            {
+              recommendations ? (
+                <Movielist movies={recommendations} number={12}/>
+              ) :
+              (<Box>Sorry, No data is available for this movie.</Box>)
+            }
+        </Box>
     </Grid>
   )
 }
