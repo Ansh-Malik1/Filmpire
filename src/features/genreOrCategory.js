@@ -10,7 +10,7 @@ export const genreOrCategory = createSlice({
     reducers:{
         selectGenreOrCategory:(state,action)=>{
             state.genreOrCategoryName = action.payload
-            state.searchQuery=''
+            state.searchQuery= ''
         },
         searchMovie:(state , action)=>{
             state.searchQuery = action.payload
