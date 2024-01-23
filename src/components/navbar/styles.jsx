@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-const drawerWidth='220px'
+const drawerWidth='260px'
 export default makeStyles((theme)=>({
     toolbar:{
         height:'80px',

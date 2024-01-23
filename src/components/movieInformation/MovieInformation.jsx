@@ -18,10 +18,10 @@ const MovieInformation = () => {
   const isMovieWatchlisted = false
   const {data:recommendations, isFetching:isFetchingRecommendations} = useGetRecommendationsQuery({
     movie_id: id,
-    list:'/similar'
+    list:'/recommendations'
     
   })
-  console.log(recommendations)
+
   if(isFetching){
     return(
       <Box display='flex' justifyContent='center' alignItems='center'><CircularProgress size='8rem'/></Box>
@@ -109,7 +109,7 @@ const MovieInformation = () => {
         </Grid>  
         <Box marginTop='5rem' width='100%'> 
             <Typography variant='h3' align='center' gutterBottom>Similar Movies</Typography>
-            <Typography align='center' variant='subtitle1' gutterBottom>Get similar movies based on genres and plot</Typography>
+            <Typography align='center' variant='subtitle1' gutterBottom>Get movies based on similar genres and plot</Typography>
             {
               recommendations ? (
                 <Movielist movies={recommendations} number={12}/>

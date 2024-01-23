@@ -27,7 +27,6 @@ const Movies = () => {
   if(!isFetching){
     return (
       <div>
-        {/* <h1 onClick={()=> navigate(-1)}>BAck</h1> */}
         <Movielist movies={data}/>
       </div>
     )
