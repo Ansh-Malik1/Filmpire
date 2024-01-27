@@ -6,6 +6,7 @@ import Navbar from './navbar/Navbar'
 import MovieInformation from './movieInformation/MovieInformation'
 import Movies from './movies/Movies'
 import useStyles from './styles'
+import Profile from './profile/Profile'
 const App = () => {
     const classes = useStyles()
   return (
@@ -17,7 +18,7 @@ const App = () => {
             <Routes>
                     <Route exact path='/movie/:id' element={<MovieInformation/>}></Route>
                     <Route exact path='/actors/:id' element={<Actors/>}></Route>
-                    <Route exact path='/profile/:id' element={<div>Profile</div>}></Route>
+                    <Route exact path='/profile/:id' element={<Profile/>}></Route>
                     <Route path='/' element={<Movies/>}></Route>
                 </Routes> 
             </main>
