@@ -5,18 +5,18 @@ import {Search as SearchIcon} from '@mui/icons-material'
 import { useDispatch } from 'react-redux';
 import { searchMovie } from '../../features/genreOrCategory';
 const SearchBar = () => {
-  function handlePress(event){
-    if(event.key==='Enter'){
-        dispatch(searchMovie(query))
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      dispatch(searchMovie(query));
     }
-  }
+  };
   const dispatch = useDispatch()
   const classes = useStyles();
   const [query , setQuery] = useState('')
   return (
     <div className={classes.searchCont}>
       <TextField 
-      onKeyDown={handlePress} 
+      onKeyDown={handleKeyPress} 
       variant='standard' 
       InputProps={{className:classes.input,startAdornment:(<InputAdornment position='start'><SearchIcon/></InputAdornment>)}} 
       value={query} 

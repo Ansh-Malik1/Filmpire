@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 import { useGetMoviesQuery } from '../../services/apiCalls'
 import Movielist from '../movielist/Movielist'
 import { useNavigate } from 'react-router-dom'
-
+import Pagination from '../pagination/Pagination'
 const Movies = () => {
   const navigate = useNavigate()
   const [page,setPage] = useState(1)
@@ -28,6 +28,7 @@ const Movies = () => {
     return (
       <div>
         <Movielist movies={data}/>
+        <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
       </div>
     )
   }

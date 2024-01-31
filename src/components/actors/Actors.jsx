@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import useStyles from './styles'
 import {Box , Button , CircularProgress , Grid , Typography} from '@mui/material'
 import {useNavigate , useParams} from 'react-router-dom'
@@ -6,11 +7,12 @@ import { ArrowBack } from '@mui/icons-material'
 import { useGetActorInfoQuery, useGetMoviesByActorIdQuery } from '../../services/apiCalls'
 import { Link } from 'react-router-dom'
 import Movielist  from '../movielist/Movielist'
+import Pagination from '../pagination/Pagination'
 const Actors = () => {
   const {id} = useParams()
   const classes = useStyles()
   const navigate = useNavigate()
-  const page=1
+  const [page,setPage] = useState(1)
   const {data , isFetching , error} = useGetActorInfoQuery(id)
   const {data : actorMovies} = useGetMoviesByActorIdQuery({id,page})
   if(isFetching){
@@ -47,6 +49,7 @@ const Actors = () => {
         {
           actorMovies ? <Movielist movies={actorMovies} number={12}/> : <Typography>Sorry No movies to display</Typography>
         }
+        <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
       </Box> 
     </>
   )
