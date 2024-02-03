@@ -5,8 +5,10 @@ import { createTheme , ThemeProvider  } from "@mui/material";
 import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
 import store from "./app/store";
+import './index.css';
 const theme = createTheme({})
 const root =createRoot(document.getElementById("root"));
+
 root.render(
   <Provider store={store}>
     <ThemeProvider theme = {theme}>

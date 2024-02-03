@@ -14,10 +14,10 @@ export default makeStyles((theme)=>({
         borderRadius:'20px',
         boxShadow:'1rem 1rem 1rem rgb(64,64,70)',
         width:'80%',
+        height:'500px   ',
         [theme.breakpoints.down('md')]:{
             margin:'0 auto',
             width:'50%',
-            height:'350px',
         },
         [theme.breakpoints.down('sm')]:{
             margin:'0 auto',

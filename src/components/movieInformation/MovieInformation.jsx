@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal , Typography , Button , Grid , Box , CircularProgress , Rating , useMediaQuery, ButtonGroup } from '@mui/material'
 import {Movie as MovieIcon , Theaters , Language , PlusOne , Favorite , FavoriteBorderOutlined , Remove , ArrowBack} from '@mui/icons-material'
-import { Link , useNavigate, useParams } from 'react-router-dom'
+import { Link , useParams } from 'react-router-dom'
 import { UseDispatch , useSelector } from 'react-redux'
 import axios from 'axios'
 import useStyles from './styles'
@@ -10,7 +10,6 @@ import { useGetMovieQuery , useGetRecommendationsQuery} from '../../services/api
 import genreIcons from '../../assets/genres';
 const MovieInformation = () => {
   const [open , setOpen] = useState(false)
-  const navigate = useNavigate()
   const classes = useStyles();
   const {id} = useParams()
   const {data , isFetching , error} = useGetMovieQuery(id)
@@ -37,7 +36,7 @@ const MovieInformation = () => {
   }
   return (
     <Grid container className={classes.container}>
-      <Grid item sm={12} lg={4}> 
+      <Grid item sm={12} lg={4} style={{display:'flex',marginBottom:'35px'}}> 
         <img className={classes.poster} src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`} alt={data?.title}/>
       </Grid>
       <Grid lg={7} item container direction='column' className={classes.headCont}>
@@ -53,7 +52,7 @@ const MovieInformation = () => {
             <Typography gutterBottom variant='h6' align='center'>
               {data?.runtime} min
               {
-                (data?.spoken_languages).length>0 ? ` | ${data?.spoken_languages[0].name}` : ''
+                ` | Language:  ${data?.spoken_languages[0].name}` 
               }
             </Typography>
           </Grid>
@@ -121,7 +120,7 @@ const MovieInformation = () => {
           {
             data?.videos?.results.length > 0 &&(
               <iframe
-              autoplay
+              autoPlay
               className={classes.video}
               title='Trailer'
               src={`https://www.youtube.com/embed/${data.videos.results[0].key }`}
