@@ -17,7 +17,7 @@ const MovieInformation = () => {
   const isMovieWatchlisted = false
   const {data:recommendations, isFetching:isFetchingRecommendations} = useGetRecommendationsQuery({
     movie_id: id,
-    list:'/recommendations'
+    list:'/similar'
     
   })
 
