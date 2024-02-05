@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useRef} from 'react'
 import { CssBaseline } from '@mui/material'
 import { Route , Routes } from 'react-router-dom'
 import Actors from './actors/Actors'
@@ -7,8 +7,11 @@ import MovieInformation from './movieInformation/MovieInformation'
 import Movies from './movies/Movies'
 import useStyles from './styles'
 import Profile from './profile/Profile'
+import useAlan from './Alan'
 const App = () => {
     const classes = useStyles()
+    const alanBtnContainer= useRef()
+    useAlan()
   return (
     <div className={classes.root}>
         <CssBaseline />
@@ -23,6 +26,7 @@ const App = () => {
                     <Route path='/approved' element={<Movies/>}></Route>
                 </Routes> 
             </main>
+            <div ref={alanBtnContainer}/>
     </div>
   )
 }
