@@ -56,7 +56,7 @@ const Navbar = () => {
         <div>
           {
             !isLoggedIn ? (<Button color='inherit' onClick={fetchtoken}>Login &nbsp;</Button>):(<Button className={classes.profile} component={Link} to={`/profile/${user.id}`} color='inherit'>{!isMobile && <>My Movies &nbsp;</>}
-            <Avatar style={{width:30 , height:30}} alt='profile' src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwZJAVSK3CPJ3a3_bhySSkhylBn1cQWKp9jw&usqp=CAU'}></Avatar>
+            <Avatar style={{width:30 , height:30}} alt='profile'   src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar?.avatar_path}`}></Avatar>
             </Button>)
           }
         </div>
