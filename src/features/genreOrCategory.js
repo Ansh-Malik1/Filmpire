@@ -9,8 +9,9 @@ export const genreOrCategory = createSlice({
     },
     reducers:{
         selectGenreOrCategory:(state,action)=>{
-            state.genreOrCategoryName = action.payload
             state.searchQuery= ''
+            state.genreOrCategoryName = action.payload
+            
         },
         searchMovie:(state , action)=>{
             state.searchQuery = action.payload

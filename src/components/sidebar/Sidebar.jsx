@@ -37,7 +37,10 @@ function Sidebar({setToggled}) {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to='/'>
-            <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
+            <ListItem onClick={() =>{ 
+              dispatch(selectGenreOrCategory(value))
+              setToggled((prevState)=> !prevState)
+              }}>
               <ListItemIcon>
                 <img src={genreIcons[label.toLowerCase()]} className={classes.genreImg} height={30} />
               </ListItemIcon>

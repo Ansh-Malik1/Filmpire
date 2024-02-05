@@ -5,13 +5,13 @@ import { useGetMoviesQuery } from '../../services/apiCalls'
 import Movielist from '../movielist/Movielist'
 import { useNavigate } from 'react-router-dom'
 import Pagination from '../pagination/Pagination'
+import FeaturedMovie from '../featuredMovie/FeaturedMovie'
 const Movies = () => {
-  const navigate = useNavigate()
   const [page,setPage] = useState(1)
   const {genreOrCategoryName , searchQuery} = useSelector((state)=>state.currentGenreOrCategory)
   const {data , error , isFetching} = useGetMoviesQuery({genreOrCategoryName,page , searchQuery})
   const lg = useMediaQuery((theme) => theme.breakpoints.only('lg'));
-  const numberOfMovies = lg ? 16  : 18;
+  const numberOfMovies = lg ? 17  : 19;
   if(isFetching){
     return(
       <Box display='flex' justifyContent='center'><CircularProgress size='4rem'/></Box>
@@ -29,7 +29,8 @@ const Movies = () => {
   if(!isFetching){
     return (
       <div>
-        <Movielist movies={data} number={numberOfMovies}/>
+        <FeaturedMovie movie={data.results[0]}/>
+        <Movielist movies={data} number={numberOfMovies} excludeFirst/>
         <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
       </div>
     )
